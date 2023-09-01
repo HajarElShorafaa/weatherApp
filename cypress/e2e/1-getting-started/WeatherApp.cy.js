@@ -13,7 +13,6 @@ context("WeatherApp",()=>{
         cy.visit("https://weathershopper.pythonanywhere.com/");
         cy.get("#temperature").invoke("text").then((Temp)=>{
             let thenum=Math.floor(Temp.match(/\d+/)[0])
-            cy.log(thenum)
             if(thenum<19){
                 cy.get(".btn").contains("Buy moisturizers").click({force:true});
             }else if(thenum>34){
@@ -43,7 +42,6 @@ context("WeatherApp",()=>{
                             .eq(2)
                             .invoke("text")
                             .then((price)=>{
-                                cy.log(price)
                                 let priceNum=Math.floor(price.match(/\d+/)[0]);
                                 priceArray.push(priceNum)
                             }) 
@@ -56,9 +54,7 @@ context("WeatherApp",()=>{
                     priceArray[MinIndex]=100000
 
                     MinIndex2=priceArray.indexOf(Math.min(...priceArray))
-                    Total+=priceArray[MinIndex2];                  
-                    cy.log("MinIndex2 is"+MinIndex2)
-                    cy.log(Total);
+                    Total+=priceArray[MinIndex2];
                 }).then(()=>{
                     cy.get('[class="container"] [class*="top-space-50"] [class*="text-center"]')
                     .eq(MinIndex)
@@ -98,7 +94,6 @@ context("WeatherApp",()=>{
                             .eq(2)
                             .invoke("text")
                             .then((price)=>{
-                                cy.log(price)
                                 let priceNum=Math.floor(price.match(/\d+/)[0]);
                                 priceArray.push(priceNum)
                             }) 
@@ -111,9 +106,7 @@ context("WeatherApp",()=>{
                    priceArray[MinIndex]=100000
 
                    MinIndex2=priceArray.indexOf(Math.min(...priceArray))
-                   Total+=priceArray[MinIndex2];                  
-                   cy.log("MinIndex2 is"+MinIndex2)
-                   cy.log(Total);
+                   Total+=priceArray[MinIndex2];
                 }).then(()=>{
                     cy.get('[class="container"] [class*="top-space-50"] [class*="text-center"]')
                     .eq(MinIndex)
@@ -148,24 +141,6 @@ context("WeatherApp",()=>{
             cy.get('h2').should('include','PAYMENT SUCCESS')
         
         })
-        // .then(($span)=>{
-        //     const $try=$span.text()
-        //     let thenum=Math.floor($try.match(/\d+/)[0])
-        //     cy.log(thenum)
-        //     cy.get($span.text()).should('include.text','19');
-        //     choice=degree($span.text());
-        //     if(choice=="moist")
-        //     cy.get(".btn").contains("Buy moisturizers").click({force:true});
-        //     else if(choice=="sunscreen")
-        //     cy.get(".btn").contains("Buy sunscreens").click({force:true});
-        // })
-        // cy.get(':nth-child(2) > :nth-child(1) > :nth-child(3)').log();
-        // cy.get(':nth-child(2) > :nth-child(3) > .btn').click({force:true});
-        // cy.get(':nth-child(2) > :nth-child(3) > .btn').parent().find()
-        // cy.get(':nth-child(2) > .btn').click({force:true});
-        // cy.get('.thin-text').click({force:true});
-        // cy.get('#total').contains('Total: Rupees 411');
-        // cy.get('.stripe-button-el > span').click({force:true});
     
     })
 })
